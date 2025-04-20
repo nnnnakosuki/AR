@@ -1,0 +1,54 @@
+<!DOCTYPE html>  
+<head>  
+    <meta charset="UTF-8">  
+
+    <!-- 初始化视口 -->  
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">  
+
+    <!-- 加载所需的依赖项：A-frame 和 AR.js -->  
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>  
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>  
+
+    <!-- 这个脚本是一个临时解决方案，因为在编写时，提供的视觉效果存在一些失真， -->  
+    <!-- 直到系统接收到调整大小事件。必须在所有内容加载并且相机初始化后触发调整大小事件。 -->  
+    <!-- 我尝试的所有事件都没有成功，所以最后我使用了一个 3 秒的超时。 -->  
+    <!-- 当 AR.js 库中的这个问题被修复时，这个临时解决方案将不再需要。 -->  
+    <script>  
+    window.onload = function(){    
+        setTimeout(function(){  
+            var resizeEvent = window.document.createEvent('UIEvents');  
+            resizeEvent.initUIEvent('resize', true, false, window, 0);  
+            window.dispatchEvent(resizeEvent);  
+        }, 3000);  
+    };   
+</script>  
+</head>  
+
+<body style='margin : 0px; overflow: hidden;'>  
+    <!-- a-scene 定义了我们将要使用的场景。在 arjs= 后有各种选项可以根据需要进行自定义。 -->  
+    <!-- 目前只需使用这些选项即可。 -->  
+    <!-- 注意，我们添加了新的 detectionMode 参数和 matrixCodeType 参数。 -->  
+    <!-- MatrixCodeType 是 3x3，因为我们之前使用在线工具创建了一个 3x3 的标记。 -->  
+    <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>  
+
+         <!-- 定义我们将要使用的模式标记。注意，我们没有提供图像文件，而是提供了 -->  
+         <!-- 从在线工具获得的“编译” .patt 文件。标记必须通过 HTTPS 访问。 -->  
+         <a-marker preset='custom' type='pattern' url='https://skarredghost.com/AR/pattern-Skarredghost_marker.patt'>  
+
+            <!-- 在检测到标记时显示的内容：一个位于地面上的红色立方体 -->  
+            <a-box position='0 0.5 0' color="red"></a-box>  
+
+         </a-marker>  
+
+         <!-- 定义我们将要使用的条形码标记。我们只需指定其代码，在这种情况下是 2 -->  
+         <a-marker type="barcode" value="2">  
+
+            <!-- 一个黄色的立方体 -->  
+            <a-box position='0 0.5 0' color="yellow"></a-box>  
+
+         </a-marker>  
+
+         <!-- 定义场景的相机 -->  
+         <a-entity camera></a-entity>  
+    </a-scene>  
+</body>
