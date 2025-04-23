@@ -5,12 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
     <title>AR.js Example</title>  
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>  
-    <script src="https://cdn.jsdeliv.com/ajax/libs/ar.js/2.2.2/aframe-ar.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/@ar-js-org/ar.js@latest/aframe/build/aframe-ar.js"></script>  
     <style>  
-        body { margin: 0; overflow: hidden; }  
+        body {   
+            margin: 0;   
+            overflow: hidden;   
+            font-family: Arial, sans-serif;  
+        }  
+        #camera-permission {  
+            position: fixed;  
+            top: 0;  
+            left: 0;  
+            width: 100%;  
+            background: rgba(0,0,0,0.7);  
+            color: white;  
+            text-align: center;  
+            padding: 10px;  
+            z-index: 1000;  
+        }  
     </style>  
 </head>  
 <body>  
+    <div id="camera-permission" style="display:none;">  
+        请允许摄像头访问  
+    </div>  
+
     <a-scene   
         renderer="logarithmicDepthBuffer: true;"   
         embedded   
@@ -20,9 +39,9 @@
         <a-marker preset="hiro">  
             <!-- 3D模型 -->  
             <a-entity   
-                position="0 0 0"  // 将模型放置在标记的正中心  
+                position="0 0 0"  
                 rotation="0 0 0"  
-                scale="0.05 0.05 0.05"  // 减小缩放比例，使模型更紧凑  
+                scale="0.05 0.05 0.05"  
                 gltf-model="https://raw.githubusercontent.com/nnnnakosuki/AR/refs/heads/main/assets/models/cute_spooky_cat_gltf/scene.gltf"  
             >  
             </a-entity>  
@@ -33,6 +52,27 @@
     </a-scene>  
 
     <script>  
+        // 检查并请求摄像头权限  
+        function requestCameraPermission() {  
+            const permissionDiv = document.getElementById('camera-permission');  
+            
+            // 首先检查是否已经有摄像头权限  
+            navigator.mediaDevices.getUserMedia({ video: true })  
+                .then(function(stream) {  
+                    // 成功获取摄像头  
+                    permissionDiv.style.display = 'none';  
+                    stream.getTracks().forEach(track => track.stop());  
+                })  
+                .catch(function(err) {  
+                    // 显示权限提示  
+                    permissionDiv.style.display = 'block';  
+                    console.error('摄像头权限错误:', err);  
+                });  
+        }  
+
+        // 页面加载时请求摄像头权限  
+        window.addEventListener('load', requestCameraPermission);  
+
         // 手势控制组件  
         AFRAME.registerComponent('gesture-handler', {  
             schema: {  
