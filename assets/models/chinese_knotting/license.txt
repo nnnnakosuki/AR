@@ -1,0 +1,11 @@
+Model Information:
+* title:	Chinese knotting
+* source:	https://sketchfab.com/3d-models/chinese-knotting-f81d73c4916b4c918d2a38f53552ee08
+* author:	DailyArt (https://sketchfab.com/D.art)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Chinese knotting" (https://sketchfab.com/3d-models/chinese-knotting-f81d73c4916b4c918d2a38f53552ee08) by DailyArt (https://sketchfab.com/D.art) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
