@@ -14,14 +14,13 @@
     <a-scene   
         renderer="logarithmicDepthBuffer: true;"   
         embedded   
-        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"  
-    >  
+        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"  >  
         <!-- 使用Hiro标记 -->  
         <a-marker preset="hiro">  
             <!-- 3D模型 -->  
             <a-entity   
                 rotation="0 0 0"  
-                scale="0.07 0.07 0.07"  
+                scale="0.05 0.05 0.05"  
                 gltf-model="https://raw.githubusercontent.com/nnnnakosuki/AR/refs/heads/main/assets/models/chinese_painters_little_house_-_dae_villages/scene.gltf"  
             >  
             </a-entity>  
@@ -30,50 +29,6 @@
         <!-- 摄像头 -->  
         <a-entity camera></a-entity>  
     </a-scene>  
-
-    <script>  
-        // 手势控制组件  
-        AFRAME.registerComponent('gesture-handler', {  
-            schema: {  
-                enabled: { default: true }  
-            },  
-            init: function () {  
-                this.scale = 1;  
-                this.initialScale = 1;  
-                this.lastRotationY = 0;  
-
-                // 缩放事件  
-                this.el.addEventListener('pinchstart', (evt) => {  
-                    this.initialScale = this.scale;  
-                });  
-
-                this.el.addEventListener('pinchmove', (evt) => {  
-                    this.scale = this.initialScale * evt.detail.scale;  
-                    this.el.setAttribute('scale', {   
-                        x: this.scale,   
-                        y: this.scale,   
-                        z: this.scale   
-                    });  
-                });  
-
-                // 旋转事件  
-                this.el.addEventListener('touchmove', (evt) => {  
-                    if (evt.touches.length === 1) {  
-                        const touch = evt.touches[0];  
-                        const deltaX = touch.clientX - (window.innerWidth / 2);  
-                        this.lastRotationY += deltaX * 0.5;  
-                        this.el.setAttribute('rotation', {   
-                            x: 0,   
-                            y: this.lastRotationY,   
-                            z: 0   
-                        });  
-                    }  
-                });  
-            }  
-        });  
-
-        // 将手势控制添加到模型  
-        document.querySelector('a-entity[gltf-model]').setAttribute('gesture-handler', '');  
     </script>  
 </body>  
 </html>
