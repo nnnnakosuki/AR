@@ -10,22 +10,22 @@
 </head>  
 <body>  
     <script>  
-        AFRAME.registerComponent('registerevents', {  
-            init: function () {  
-                var marker = this.el;  
+        // AFRAME.registerComponent('registerevents', {  
+        //     init: function () {  
+        //         var marker = this.el;  
 
-                marker.setAttribute('emitevents', true);  
-                marker.addEventListener('markerFound', function () {  
-                    var markerId = marker.id;  
-                    console.log('Marker found: ', markerId);  
-                });  
+        //         marker.setAttribute('emitevents', true);  
+        //         marker.addEventListener('markerFound', function () {  
+        //             var markerId = marker.id;  
+        //             console.log('Marker found: ', markerId);  
+        //         });  
 
-                marker.addEventListener('markerLost', function () {  
-                    var markerId = marker.id;  
-                    console.log('Marker lost: ', markerId);  
-                });  
-            }  
-        });  
+        //         marker.addEventListener('markerLost', function () {  
+        //             var markerId = marker.id;  
+        //             console.log('Marker lost: ', markerId);  
+        //         });  
+        //     }  
+        // });  
 
         AFRAME.registerComponent('gesture-controls', {  
             schema: {  
