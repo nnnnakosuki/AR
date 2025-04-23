@@ -1,0 +1,11 @@
+Model Information:
+* title:	Porcelain China Vase
+* source:	https://sketchfab.com/3d-models/porcelain-china-vase-656f83a4d9224c29abc82ade2207d2ce
+* author:	rz (https://sketchfab.com/rz)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Porcelain China Vase" (https://sketchfab.com/3d-models/porcelain-china-vase-656f83a4d9224c29abc82ade2207d2ce) by rz (https://sketchfab.com/rz) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

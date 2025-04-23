@@ -1,39 +1,31 @@
 <!DOCTYPE html>  
-<html>  
+<html lang="zh">  
 <head>  
-  <title>AR.js Example</title>  
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>  
-  <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
+    <title>AR.js Example</title>  
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/@ar-js-org/ar.js@latest/aframe/build/aframe-ar.js"></script>  
+    <style>  
+        body { margin: 0; overflow: hidden; }  
+    </style>  
 </head>  
 <body>  
-  <script>  
-    AFRAME.registerComponent('registerevents', {  
-      init: function () {  
-        var marker = this.el;  
+    <a-scene renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: true;">  
+        <!-- 使用Hiro标记 -->  
+        <a-marker preset="hiro">  
+            <!-- 3D模型 -->  
+            <a-entity   
+                position="0 0 0"  
+                rotation="0 90 0"  
+                scale="0.05 0.05 0.05"  
+                gltf-model="https://raw.githubusercontent.com/nnnnakosuki/AR/refs/heads/main/assets/models/chinese_painters_little_house_-_dae_villages/scene.gltf"  
+            >  
+            </a-entity>  
+        </a-marker>  
 
-        marker.setAttribute('emitevents', true);  
-        marker.addEventListener('markerFound', function() {  
-          var markerId = marker.id;  
-          console.log('Marker found: ', markerId);  
-        });  
-
-        marker.addEventListener('markerLost', function() {  
-          var markerId = marker.id;  
-          console.log('Marker lost: ', markerId);  
-        });  
-      }  
-    });  
-  </script>  
-
-  <a-scene embedded arjs='sourceType: webcam;'>  
-
-    <a-marker preset='hiro'>
-      <a-entity gltf-model='url(https://raw.githubusercontent.com/nnnnakosuki/AR/refs/heads/main/assets/models/architecture/scene.gltf)'>  
-        <a-animation attribute='material.opacity' dur='500' from='0.0' to='1' direction='alternate' repeat='indefinite'></a-animation>  
-      </a-entity>  
-    </a-marker>
-
-    <a-entity camera></a-entity>  
-  </a-scene>  
+        <!-- 摄像头 -->  
+        <a-entity camera></a-entity>  
+    </a-scene>  
 </body>  
 </html>
