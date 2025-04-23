@@ -1,0 +1,11 @@
+Model Information:
+* title:	Chinese pagoda
+* source:	https://sketchfab.com/3d-models/chinese-pagoda-9368be07f47949e2b6eaa962ea9c58ad
+* author:	SibeYu (https://sketchfab.com/SibeYu)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Chinese pagoda" (https://sketchfab.com/3d-models/chinese-pagoda-9368be07f47949e2b6eaa962ea9c58ad) by SibeYu (https://sketchfab.com/SibeYu) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
