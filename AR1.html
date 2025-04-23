@@ -1,45 +1,79 @@
 <!DOCTYPE html>  
-<html>  
+<html lang="zh">  
 <head>  
-  <title>AR.js Example</title>  
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>  
-  <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
+    <title>AR.js Example</title>  
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>  
+    <script src="https://cdn.jsdeliv.com/ajax/libs/ar.js/2.2.2/aframe-ar.min.js"></script>  
+    <style>  
+        body { margin: 0; overflow: hidden; }  
+    </style>  
 </head>  
 <body>  
-  <script>  
-    AFRAME.registerComponent('registerevents', {  
-      init: function () {  
-        var marker = this.el;  
+    <a-scene   
+        renderer="logarithmicDepthBuffer: true;"   
+        embedded   
+        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"  
+    >  
+        <!-- 使用Hiro标记 -->  
+        <a-marker preset="hiro">  
+            <!-- 3D模型 -->  
+            <a-entity   
+                rotation="0 0 0"  
+                scale="0.1 0.1 0.1"  
+                gltf-model="https://raw.githubusercontent.com/nnnnakosuki/AR/refs/heads/main/assets/models/chinese_painters_little_house_-_dae_villages/scene.gltf"  
+            >  
+            </a-entity>  
+        </a-marker>  
 
-        marker.setAttribute('emitevents', true);  
-        marker.addEventListener('markerFound', function() {  
-          var markerId = marker.id;  
-          console.log('Marker found: ', markerId);  
+        <!-- 摄像头 -->  
+        <a-entity camera></a-entity>  
+    </a-scene>  
+
+    <script>  
+        // 手势控制组件  
+        AFRAME.registerComponent('gesture-handler', {  
+            schema: {  
+                enabled: { default: true }  
+            },  
+            init: function () {  
+                this.scale = 1;  
+                this.initialScale = 1;  
+                this.lastRotationY = 0;  
+
+                // 缩放事件  
+                this.el.addEventListener('pinchstart', (evt) => {  
+                    this.initialScale = this.scale;  
+                });  
+
+                this.el.addEventListener('pinchmove', (evt) => {  
+                    this.scale = this.initialScale * evt.detail.scale;  
+                    this.el.setAttribute('scale', {   
+                        x: this.scale,   
+                        y: this.scale,   
+                        z: this.scale   
+                    });  
+                });  
+
+                // 旋转事件  
+                this.el.addEventListener('touchmove', (evt) => {  
+                    if (evt.touches.length === 1) {  
+                        const touch = evt.touches[0];  
+                        const deltaX = touch.clientX - (window.innerWidth / 2);  
+                        this.lastRotationY += deltaX * 0.5;  
+                        this.el.setAttribute('rotation', {   
+                            x: 0,   
+                            y: this.lastRotationY,   
+                            z: 0   
+                        });  
+                    }  
+                });  
+            }  
         });  
 
-        marker.addEventListener('markerLost', function() {  
-          var markerId = marker.id;  
-          console.log('Marker lost: ', markerId);  
-        });  
-      }  
-    });  
-  </script>  
-
-  <a-scene embedded arjs='sourceType: webcam;'>  
-
-    <a-marker preset='hiro'>
-      <a-entity gltf-model='url(https://raw.githubusercontent.com/nnnnakosuki/AR/refs/heads/main/assets/models/chinese_painters_little_house_-_dae_villages/scene.gltf)'>  
-        <a-animation attribute='material.opacity' dur='500' from='0.0' to='1' direction='alternate' repeat='indefinite'></a-animation>  
-      </a-entity>  
-    </a-marker>
-    
-    <!-- <a-marker url='https://raw.githubusercontent.com/nnnnakosuki/AR/refs/heads/main/assets/markers/pat/marker1.patt'>  
-      <a-entity gltf-model='url(https://raw.githubusercontent.com/nnnnakosuki/AR/refs/heads/main/assets/models/architecture/scene.gltf)'>  
-        <a-animation attribute='material.opacity' dur='500' from='0.0' to='1' direction='alternate' repeat='indefinite'></a-animation>  
-      </a-entity>  
-    </a-marker>   -->
-
-    <a-entity camera></a-entity>  
-  </a-scene>  
+        // 将手势控制添加到模型  
+        document.querySelector('a-entity[gltf-model]').setAttribute('gesture-handler', '');  
+    </script>  
 </body>  
 </html>
