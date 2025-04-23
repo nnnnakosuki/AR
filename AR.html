@@ -17,6 +17,7 @@
             init: function () {  
                 this.scale = 1;  
                 this.initialScale = 1;  
+                this.initialRotationY = 0;  
 
                 this.el.addEventListener('gesturestart', (event) => {  
                     this.initialScale = this.scale;  
@@ -34,8 +35,9 @@
                 this.el.addEventListener('touchmove', (event) => {  
                     if (event.touches.length === 1) {  
                         const touch = event.touches[0];  
-                        const rotationY = (touch.clientX / window.innerWidth) * 360;  
-                        this.el.setAttribute('rotation', { x: 0, y: rotationY, z: 0 });  
+                        const deltaX = touch.clientX - (window.innerWidth / 2);  
+                        this.initialRotationY += deltaX * 0.1; // 控制旋转速度  
+                        this.el.setAttribute('rotation', { x: 0, y: this.initialRotationY, z: 0 });  
                     }  
                 });  
             }  
