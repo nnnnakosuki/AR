@@ -10,23 +10,6 @@
 </head>  
 <body>  
     <script>  
-        // AFRAME.registerComponent('registerevents', {  
-        //     init: function () {  
-        //         var marker = this.el;  
-
-        //         marker.setAttribute('emitevents', true);  
-        //         marker.addEventListener('markerFound', function () {  
-        //             var markerId = marker.id;  
-        //             console.log('Marker found: ', markerId);  
-        //         });  
-
-        //         marker.addEventListener('markerLost', function () {  
-        //             var markerId = marker.id;  
-        //             console.log('Marker lost: ', markerId);  
-        //         });  
-        //     }  
-        // });  
-
         AFRAME.registerComponent('gesture-controls', {  
             schema: {  
                 scaleFactor: { type: 'number', default: 0.1 }  
@@ -63,8 +46,8 @@
         <a-marker preset='hiro'>  
             <a-entity gltf-model='url(https://raw.githubusercontent.com/nnnnakosuki/AR/refs/heads/main/assets/models/cute_spooky_cat_gltf/scene.gltf)' gesture-controls></a-entity>  
         </a-marker>  
-
-        <!-- <a-entity camera look-controls></a-entity>   -->
+        
+        <a-entity camera look-controls></a-entity>  
     </a-scene>  
 </body>  
 </html>
