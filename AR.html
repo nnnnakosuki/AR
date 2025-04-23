@@ -27,36 +27,36 @@
         //     }  
         // });  
 
-        // AFRAME.registerComponent('gesture-controls', {  
-        //     schema: {  
-        //         scaleFactor: { type: 'number', default: 0.1 }  
-        //     },  
-        //     init: function () {  
-        //         this.scale = 1;  
-        //         this.initialScale = 1;  
+        AFRAME.registerComponent('gesture-controls', {  
+            schema: {  
+                scaleFactor: { type: 'number', default: 0.1 }  
+            },  
+            init: function () {  
+                this.scale = 1;  
+                this.initialScale = 1;  
 
-        //         this.el.addEventListener('gesturestart', (event) => {  
-        //             this.initialScale = this.scale;  
-        //         });  
+                this.el.addEventListener('gesturestart', (event) => {  
+                    this.initialScale = this.scale;  
+                });  
 
-        //         this.el.addEventListener('gesturechange', (event) => {  
-        //             this.scale = this.initialScale * event.detail.scale;  
-        //             this.el.setAttribute('scale', { x: this.scale, y: this.scale, z: this.scale });  
-        //         });  
+                this.el.addEventListener('gesturechange', (event) => {  
+                    this.scale = this.initialScale * event.detail.scale;  
+                    this.el.setAttribute('scale', { x: this.scale, y: this.scale, z: this.scale });  
+                });  
 
-        //         this.el.addEventListener('gestureend', (event) => {  
-        //             this.initialScale = this.scale;  
-        //         });  
+                this.el.addEventListener('gestureend', (event) => {  
+                    this.initialScale = this.scale;  
+                });  
 
-        //         this.el.addEventListener('touchmove', (event) => {  
-        //             if (event.touches.length === 1) {  
-        //                 const touch = event.touches[0];  
-        //                 const rotationY = (touch.clientX / window.innerWidth) * 360;  
-        //                 this.el.setAttribute('rotation', { x: 0, y: rotationY, z: 0 });  
-        //             }  
-        //         });  
-        //     }  
-        // });  
+                this.el.addEventListener('touchmove', (event) => {  
+                    if (event.touches.length === 1) {  
+                        const touch = event.touches[0];  
+                        const rotationY = (touch.clientX / window.innerWidth) * 360;  
+                        this.el.setAttribute('rotation', { x: 0, y: rotationY, z: 0 });  
+                    }  
+                });  
+            }  
+        });  
     </script>  
 
     <a-scene embedded arjs='sourceType: webcam;'>  
