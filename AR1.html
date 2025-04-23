@@ -14,16 +14,16 @@
     <a-scene renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: true;">  
         <!-- 光源 -->  
         <!-- 环境光：柔和地照亮整个场景 -->  
-        <a-entity light="type: ambient; color: #BBB; intensity: 1"></a-entity>  
+        <a-entity light="type: ambient; color: #FF0000; intensity: 1"></a-entity>  
         
         <!-- 方向光：模拟太阳光 -->  
-        <a-entity light="type: directional; color: #FFF; intensity: 1;   
+        <a-entity light="type: directional; color: #FF0000; intensity: 1;   
                         position: 5 5 5;  
                         target: #lantern"></a-entity>  
         
         <!-- 点光源：模拟灯笼内部发光 -->  
-        <a-entity light="type: point; color: #FF9900; intensity: 1;   
-                        distance: 100;   
+        <a-entity light="type: point; color: #FF0000; intensity: 1;   
+                        distance: 250;   
                         position: 0 0 1;  
                         target: #lantern"></a-entity>  
 
@@ -35,6 +35,7 @@
                 position="0 0 0"  
                 rotation="90 180 0"  
                 scale="0.5 0.5 0.5"  
+                material="color: #FF0000; opacity: 1; metalness: 0.2; roughness: 0.5;"  
                 gltf-model="https://raw.githubusercontent.com/nnnnakosuki/AR/refs/heads/main/assets/models/chinese_lantern/scene.gltf"  
             >  
             </a-entity>  
